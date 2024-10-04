@@ -17,15 +17,15 @@ const userSchema = new mongoose.Schema(
       required: [true, "Please enter your email"],
       unique: true,
       index: 1,
-      maxLength: [20, "Email can't be more than 20 characters'"],
+      maxLength: [50, "Email can't be more than 50 characters'"],
     },
     password: {
       type: String,
-      required: [true, "Please enter your password"],
       minLength: [6, "Password must be at least 6 characters long"],
     },
     mobile: {
       type: String,
+      required: [true, "Please enter your phone number"],
       maxLength: [20, "Phone number can't be more than 20 characters'"],
     },
     address: {
@@ -52,9 +52,12 @@ const userSchema = new mongoose.Schema(
       type: String,
       default: "",
     },
+    image: {
+      type: String,
+    },
   },
   { timestamps: true }
 );
 
-const userModel = mongoose.model("User", userSchema);
+const userModel = mongoose.model("player", userSchema);
 export default userModel;
