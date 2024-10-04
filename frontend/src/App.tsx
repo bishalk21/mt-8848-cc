@@ -5,14 +5,16 @@ import About from "./components/about/about";
 import Team from "./components/team/Team";
 import Contact from "./components/contact/contact";
 import Footer from "./components/footer/footer";
+import { Provider } from "react-redux";
+import { store } from "./reducers/store";
 
 function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
   return (
-    <>
-      <div className="min-h-screen bg-gray-100">
+    <Provider store={store}>
+      <div className="h-full bg-gray-100">
         <Navbar isMenuOpen={isMenuOpen} toggleMenu={toggleMenu} />
         <Hero />
         <About />
@@ -20,7 +22,7 @@ function App() {
         <Contact />
         <Footer />
       </div>
-    </>
+    </Provider>
   );
 }
 
