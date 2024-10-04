@@ -15,7 +15,7 @@ const playerSlice = createSlice({
   name: "player",
   initialState: [] as PlayerState[] | null,
   reducers: {
-    setPlayer: (state, action) => {
+    setPlayer: (_, action) => {
       // add existing players to the new player
       return action.payload;
     },
