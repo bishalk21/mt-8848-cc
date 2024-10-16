@@ -18,8 +18,8 @@ app.use(
 
 // serving static files from the public folder
 const __dirname = path.resolve();
-// app.use("/public", express.static(path.join(__dirname, "public")));
-app.use(express.static(path.join(__dirname, "/frontend/dist")));
+app.use("/public", express.static(path.join(__dirname, "public")));
+// app.use(express.static(path.join(__dirname, "/frontend/dist")));
 
 const PORT = process.env.PORT || 8080;
 
