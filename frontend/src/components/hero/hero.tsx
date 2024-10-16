@@ -7,7 +7,7 @@ export default function Hero() {
       strength={500}
     >
       <div
-        id="home"
+        id="hero"
         className="h-screen flex items-center justify-center text-black"
       >
         <div className="text-center">

@@ -5,37 +5,6 @@ import axios from "axios";
 import { useAppDispatch, useAppSelector } from "@/reducers/store";
 import { setPlayer } from "@/reducers/slice-actions/playerSlice";
 
-// const players = [
-//   {
-//     name: "John Doe",
-//     role: "Batsman",
-//     image:
-//       "https://plus.unsplash.com/premium_photo-1721963696949-c6d959e6604f?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Njl8fGNyaWNrZXR8ZW58MHwxfDB8fHww",
-//     stats: "Avg: 45.5, SR: 135.2",
-//   },
-//   {
-//     name: "Jane Smith",
-//     role: "Bowler",
-//     image:
-//       "https://plus.unsplash.com/premium_photo-1721963697056-e8cde3b8eb53?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTAxfHxjcmlja2V0JTIwcGxheWVyfGVufDB8MXwwfHx8MA%3D%3D?height=300&width=300",
-//     stats: "Wickets: 89, Econ: 6.2",
-//   },
-//   {
-//     name: "Bob Johnson",
-//     role: "All-rounder",
-//     image:
-//       "https://images.unsplash.com/photo-1677785643764-179393bc3842?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NjR8fGNyaWNrZXR8ZW58MHwxfDB8fHww",
-//     stats: "Bat Avg: 38.7, Bowl Avg: 28.3",
-//   },
-//   {
-//     name: "Alice Brown",
-//     role: "Wicket-keeper",
-//     image:
-//       "https://images.unsplash.com/photo-1643294358128-0d2da3b4ea7a?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Njh8fGNyaWNrZXR8ZW58MHwxfDB8fHww",
-//     stats: "Dismissals: 67, Bat Avg: 32.1",
-//   },
-// ];
-
 export default function Team() {
   const [currentPlayerIndex, setCurrentPlayerIndex] = useState(0);
 
@@ -63,9 +32,17 @@ export default function Team() {
     fetchPlayers();
   }, []);
 
+  const imagePath = player && player[currentPlayerIndex]?.image;
+  const formatImagePath =
+    typeof imagePath === "string" ? imagePath.replace(/\\/g, "/") : "";
+  // Make sure the path starts with /public, since the server serves static files from /public
+  const fullImagePath = `http://localhost:8080/${formatImagePath}`;
   if (!player || player.length === 0) {
     return (
-      <div className="text-center text-3xl font-bold text-red-500 mt-20">
+      <div
+        className="text-center text-3xl font-bold text-red-500 mt-20"
+        id="team"
+      >
         Loading...
       </div>
     );
@@ -76,16 +53,14 @@ export default function Team() {
       strength={300}
       blur={2}
     >
-      <section id="team" className="py-16">
-        <div className="container mx-auto px-4">
+      <section className="py-16">
+        <div className="container mx-auto px-4" id="team">
           <h2 className="text-3xl font-bold mb-8 text-center text-black">
             Our Team
           </h2>
           <div className="relative h-fit max-w-sm mx-auto bg-white rounded-lg shadow-lg overflow-hidden">
             <img
-              src={
-                "http://localhost:8080/public/img/player/1728026919788-95317386.jpg"
-              }
+              src={fullImagePath}
               alt={
                 player[currentPlayerIndex]?.firstName +
                 " " +
