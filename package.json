@@ -6,7 +6,8 @@
   "type": "module",
   "scripts": {
     "start": "node backend/src/index.js",
-    "dev": "nodemon backend/src/index.js"
+    "dev": "nodemon backend/src/index.js",
+    "build": "cd frontend && npm install frontend && npm run build frontend"
   },
   "keywords": [
     "node.js",
